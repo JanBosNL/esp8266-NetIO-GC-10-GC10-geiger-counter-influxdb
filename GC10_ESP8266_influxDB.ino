@@ -26,7 +26,7 @@ Influxdb influx(INFLUXDB_HOST);
 void setup() {
   Serial.begin(BAUD_RATE);
   geiger.begin(BAUD_RATE);
-//  geiger.bufferUntil('\r')
+
   Serial.println(" ### Hello ###");
 
   WiFiMulti.addAP(WIFI_SSID, WIFI_PASS);
@@ -55,13 +55,6 @@ void setup() {
 
   if (geiger.available() > 0) {
        int red = geiger.readStringUntil('\r').toInt();// read the incoming data as string until('\r');
-  
-  //int constrainedred = constrain(red, 0, 99);
-  //
-  //if (geiger.read() == '\r') {
-
-   
-  //}
   
   InfluxData row("temperature");
   row.addTag("device", "alpha");
